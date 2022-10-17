@@ -80,6 +80,8 @@ data "aws_iam_policy_document" "bucket_policy_doc" {
       }
     }
   }
+  source_policy_documents   = var.source_policy_documents
+  override_policy_documents = var.override_policy_documents
 }
 
 resource "aws_s3_bucket_policy" "bucket_policy" {

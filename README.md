@@ -24,6 +24,8 @@ The `replication_source` variable configures permissions for S3 replication to t
 
 The `allow_anonymous_vpce_access` variable configures permissions for VPC endpoints to access the bucket. If this is set, the module will add a rule that allows the VPC endpoint to read from the bucket. The `vpce` variable must be set to the VPC endpoint ID that is to be allowed access.
 
+Use `source_policy_documents` and `override_policy_documents` to add extra statements for the policy that you need if the module doesn't provide the statements out of the box. See [this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document#example-using-a-source-document) for examples.
+
 Integrate this module like so:
 
 ```hcl
@@ -89,7 +91,9 @@ No modules.
 | <a name="input_bucket_policy"></a> [bucket\_policy](#input\_bucket\_policy) | Policy to apply to the bucket. If null, one will be guessed based on other variables. | `string` | `null` | no |
 | <a name="input_force_tls"></a> [force\_tls](#input\_force\_tls) | Deny HTTP requests that are made to the bucket without TLS. | `bool` | `true` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name of the s3 bucket this policy is to apply to. If null, will default to product. | `string` | `null` | no |
+| <a name="input_override_policy_documents"></a> [override\_policy\_documents](#input\_override\_policy\_documents) | List of IAM policy documents that are merged together into the exported document. In merging, statements with non-blank sids will override statements with the same sid from earlier documents in the list. Statements with non-blank sids will also override statements with the same sid from documents provided in the source\_json and source\_policy\_documents arguments. Non-overriding statements will be added to the exported document. | `list(string)` | `null` | no |
 | <a name="input_replication_source"></a> [replication\_source](#input\_replication\_source) | The account number and role for the source bucket in a replication configuration. | <pre>object({<br>    account_id = string<br>    role       = string<br>  })</pre> | `null` | no |
+| <a name="input_source_policy_documents"></a> [source\_policy\_documents](#input\_source\_policy\_documents) | List of IAM policy documents that are merged together into the exported document. Statements defined in source\_policy\_documents or source\_json must have unique sids. Statements with the same sid from documents assigned to the override\_json and override\_policy\_documents arguments will override source statements. | `list(string)` | `null` | no |
 | <a name="input_vpce"></a> [vpce](#input\_vpce) | Name of the VPC endpoint that should have access to this bucket. Only used when `allow_anonymous_vpce_access` is true. | `string` | `null` | no |
 
 ## Outputs

@@ -24,6 +24,8 @@ The `replication_source` variable configures permissions for S3 replication to t
 
 The `allow_anonymous_vpce_access` variable configures permissions for VPC endpoints to access the bucket. If this is set, the module will add a rule that allows the VPC endpoint to read from the bucket. The `vpce` variable must be set to the VPC endpoint ID that is to be allowed access.
 
+Use `source_policy_documents` and `override_policy_documents` to add extra statements for the policy that you need if the module doesn't provide the statements out of the box. See [this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document#example-using-a-source-document) for examples.
+
 Integrate this module like so:
 
 ```hcl
