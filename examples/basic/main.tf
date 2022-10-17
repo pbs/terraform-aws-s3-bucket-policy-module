@@ -14,8 +14,5 @@ module "s3_bucket_policy" {
 
   name = module.s3.name
 
-  organization = var.organization
-  environment  = var.environment
-  product      = var.product
-  repo         = var.repo
+  product = var.product
 }
