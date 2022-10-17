@@ -33,9 +33,3 @@ variable "organization" {
     error_message = "The organization variable violates approved regex."
   }
 }
-
-variable "tags" {
-  description = "Extra tags"
-  default     = {}
-  type        = map(string)
-}
