@@ -1,4 +1,4 @@
-terraform 1.2.7
+terraform 1.3.2
 golang 1.18.5
 ripgrep 13.0.0
 tflint 0.39.3

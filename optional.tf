@@ -48,3 +48,12 @@ variable "override_policy_documents" {
   default     = null
   type        = list(string)
 }
+
+variable "cloudfront_oac_access_statement" {
+  description = "List of objects that define the CloudFront origin access identity access statement. Each object must have a `cloudfront_arn` and `path` key."
+  default     = []
+  type = list(object({
+    cloudfront_arn = string
+    path           = optional(string, "*")
+  }))
+}

@@ -80,6 +80,22 @@ data "aws_iam_policy_document" "bucket_policy_doc" {
       }
     }
   }
+  dynamic "statement" {
+    for_each = var.cloudfront_oac_access_statement
+    content {
+      actions   = ["s3:GetObject"]
+      resources = ["arn:aws:s3:::${local.name}/${statement.value.path}"]
+      principals {
+        type        = "Service"
+        identifiers = ["cloudfront.amazonaws.com"]
+      }
+      condition {
+        test     = "StringEquals"
+        variable = "aws:SourceArn"
+        values   = [statement.value.cloudfront_arn]
+      }
+    }
+  }
   source_policy_documents   = var.source_policy_documents
   override_policy_documents = var.override_policy_documents
 }
