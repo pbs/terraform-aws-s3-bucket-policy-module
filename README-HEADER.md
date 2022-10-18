@@ -29,14 +29,11 @@ Use `source_policy_documents` and `override_policy_documents` to add extra state
 Integrate this module like so:
 
 ```hcl
-module "s3-bucket-policy" {
+module "s3_bucket_policy" {
   source = "github.com/pbs/terraform-aws-s3-bucket-policy-module?ref=x.y.z"
 
   # Tagging Parameters
-  organization = var.organization
-  environment  = var.environment
   product      = var.product
-  repo         = var.repo
 
   # Optional Parameters
 }
