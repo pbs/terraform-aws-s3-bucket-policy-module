@@ -1,15 +1,7 @@
 locals {
-  name    = var.name != null ? var.name : var.product
-  creator = "terraform"
+  name = var.name != null ? var.name : var.product
 
-  tags = merge(
-    var.tags,
-    {
-      Name                                      = local.name
-      "${var.organization}:billing:product"     = var.product
-      "${var.organization}:billing:environment" = var.environment
-      creator                                   = local.creator
-      repo                                      = var.repo
-    }
-  )
+  create_replication_target_policy = var.replication_source != null
+
+  bucket_policy = var.bucket_policy != null ? var.bucket_policy : data.aws_iam_policy_document.bucket_policy_doc[0].json
 }

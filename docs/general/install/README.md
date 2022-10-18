@@ -11,8 +11,8 @@ All the techniques for installing modules are based around the ways that Terrafo
 Assuming you don't have manual modifications that you need to make to serve the purposes of an application, the most convenient method of integrating modules might be by using the repo source of this module like so:
 
 ```hcl
-module "MOD_SHORTNAME" {
-    source = "github.com/pbs/terraform-MOD_NAME?ref=x.y.z"
+module "s3-bucket-policy" {
+    source = "github.com/pbs/terraform-s3-bucket-policy-module?ref=x.y.z"
 }
 ```
 
@@ -29,9 +29,9 @@ Note that the provider being used might also have availability or security impli
 You can install the minified module directly in your repo manually like so:
 
 ```bash
-mkdir -p 'terraform/modules/MOD_SHORTNAME'
-gh -R 'pbs/terraform-MOD_NAME' release download -p 'release.tar.gz' x.y.z
-tar -xvf release.tar.gz -C 'terraform/modules/MOD_SHORTNAME'
+mkdir -p 'terraform/modules/s3-bucket-policy'
+gh -R 'pbs/terraform-s3-bucket-policy-module' release download -p 'release.tar.gz' x.y.z
+tar -xvf release.tar.gz -C 'terraform/modules/s3-bucket-policy'
 rm -f release.tar.gz
 ```
 
@@ -46,14 +46,14 @@ Please [read this][atlassian-subtree] for information about Git Subtrees, as tha
 The simplest use case would work like so:
 
 ```bash
-git remote add -f MOD_SHORTNAME git@github.com:pbs/terraform-MOD_NAME.git
-git subtree add --prefix terraform/modules/MOD_SHORTNAME MOD_SHORTNAME main --squash
+git remote add -f s3-bucket-policy git@github.com:pbs/terraform-s3-bucket-policy-module.git
+git subtree add --prefix terraform/modules/s3-bucket-policy s3-bucket-policy main --squash
 ```
 
 If necessary, pin the repo version, rather than adding `main` as your subtree:
 
 ```bash
-git subtree add --prefix terraform/modules/MOD_SHORTNAME MOD_SHORTNAME $REF --squash
+git subtree add --prefix terraform/modules/s3-bucket-policy s3-bucket-policy $REF --squash
 ```
 
 Where `$REF` is a commit SHA, tag, or branch name.

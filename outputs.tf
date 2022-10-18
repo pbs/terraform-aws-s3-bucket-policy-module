@@ -1,9 +1,4 @@
-output "hello_world" {
-  description = "Hello world output"
-  value       = "Hello, World!"
-}
-
-output "tags" {
-  description = "The tags"
-  value       = local.tags
+output "bucket_policy" {
+  description = "JSON value of the bucket policy."
+  value       = aws_s3_bucket_policy.bucket_policy.policy
 }

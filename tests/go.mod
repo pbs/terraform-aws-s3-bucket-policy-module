@@ -1,4 +1,4 @@
-module github.com/pbs/terraform-aws-MOD_NAME
+module github.com/pbs/terraform-aws-s3-bucket-policy-module
 
 go 1.13
 
