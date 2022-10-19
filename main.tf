@@ -81,7 +81,7 @@ data "aws_iam_policy_document" "bucket_policy_doc" {
     }
   }
   dynamic "statement" {
-    for_each = var.cloudfront_oac_access_statement
+    for_each = var.cloudfront_oac_access_statements
     content {
       actions   = ["s3:GetObject"]
       resources = ["arn:aws:s3:::${local.name}/${statement.value.path}"]

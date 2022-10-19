@@ -7,7 +7,7 @@
 Use this URL for the source of the module. See the usage examples below for more details.
 
 ```hcl
-github.com/pbs/terraform-aws-s3-bucket-policy-module?ref=0.0.2
+github.com/pbs/terraform-aws-s3-bucket-policy-module?ref=x.y.z
 ```
 
 ### Alternative Installation Methods
@@ -30,7 +30,7 @@ Integrate this module like so:
 
 ```hcl
 module "s3_bucket_policy" {
-  source = "github.com/pbs/terraform-aws-s3-bucket-policy-module?ref=0.0.2"
+  source = "github.com/pbs/terraform-aws-s3-bucket-policy-module?ref=x.y.z"
 
   # Tagging Parameters
   product      = var.product
@@ -43,7 +43,7 @@ module "s3_bucket_policy" {
 
 If this repo is added as a subtree, then the version of the module should be close to the version shown here:
 
-`0.0.2`
+`x.y.z`
 
 Note, however that subtrees can be altered as desired within repositories.
 
@@ -86,7 +86,7 @@ No modules.
 | <a name="input_product"></a> [product](#input\_product) | Tag used to group resources according to product | `string` | n/a | yes |
 | <a name="input_allow_anonymous_vpce_access"></a> [allow\_anonymous\_vpce\_access](#input\_allow\_anonymous\_vpce\_access) | Create bucket policy that allows anonymous VPCE access. | `bool` | `false` | no |
 | <a name="input_bucket_policy"></a> [bucket\_policy](#input\_bucket\_policy) | Policy to apply to the bucket. If null, one will be guessed based on other variables. | `string` | `null` | no |
-| <a name="input_cloudfront_oac_access_statement"></a> [cloudfront\_oac\_access\_statement](#input\_cloudfront\_oac\_access\_statement) | List of objects that define the CloudFront origin access identity access statement. Each object must have a `cloudfront_arn` and `path` key. | <pre>list(object({<br>    cloudfront_arn = string<br>    path           = optional(string, "*")<br>  }))</pre> | `[]` | no |
+| <a name="input_cloudfront_oac_access_statements"></a> [cloudfront\_oac\_access\_statements](#input\_cloudfront\_oac\_access\_statements) | List of objects that define the CloudFront origin access identity access statement. Each object must have a `cloudfront_arn` and `path` key. | <pre>list(object({<br>    cloudfront_arn = string<br>    path           = optional(string, "*")<br>  }))</pre> | `[]` | no |
 | <a name="input_force_tls"></a> [force\_tls](#input\_force\_tls) | Deny HTTP requests that are made to the bucket without TLS. | `bool` | `true` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name of the s3 bucket this policy is to apply to. If null, will default to product. | `string` | `null` | no |
 | <a name="input_override_policy_documents"></a> [override\_policy\_documents](#input\_override\_policy\_documents) | List of IAM policy documents that are merged together into the exported document. In merging, statements with non-blank sids will override statements with the same sid from earlier documents in the list. Statements with non-blank sids will also override statements with the same sid from documents provided in the source\_json and source\_policy\_documents arguments. Non-overriding statements will be added to the exported document. | `list(string)` | `null` | no |
