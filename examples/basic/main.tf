@@ -1,5 +1,5 @@
 module "s3" {
-  source = "github.com/pbs/terraform-aws-s3-module?ref=0.2.0"
+  source = "github.com/pbs/terraform-aws-s3-module?ref=4.0.14"
 
   create_bucket_policy = false
 
